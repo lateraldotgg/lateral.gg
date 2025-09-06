@@ -7,6 +7,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import Image from "next/image";
 
 export type GlimpseProps = ComponentProps<typeof HoverCard>;
 
@@ -48,16 +49,18 @@ export const GlimpseDescription = ({
   );
 };
 
-export type GlimpseImageProps = ComponentProps<"img">;
+export type GlimpseImageProps = Omit<ComponentProps<typeof Image>, "alt"> & {
+  src: string;
+  alt: string;
+};
 
 export const GlimpseImage = ({
   className,
   alt,
   ...props
 }: GlimpseImageProps) => (
-  // biome-ignore lint/performance/noImgElement: "Kibo UI is framework agnostic"
-  <img
-    alt={alt ?? ""}
+  <Image
+    alt={alt}
     className={cn(
       "mb-4 aspect-[120/63] w-full rounded-md border object-cover",
       className
