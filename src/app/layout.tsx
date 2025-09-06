@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import CursorGradient from "@/components/CursorGradient";
+import MouseTrackedGrid from "@/components/MouseTrackedGrid";
+import MouseTrackedContent from "@/components/MouseTrackedContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +27,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
-        {children}
+        <div className="min-h-screen w-full relative">
+          {/* Cursor-Following Crimson Gradient */}
+          <CursorGradient />
+          {/* Mouse-Tracked Grid Background */}
+          <MouseTrackedGrid />
+          {/* Your Content/Components */}
+          <MouseTrackedContent>
+            {children}
+          </MouseTrackedContent>
+        </div>
       </body>
     </html>
   );
