@@ -25,7 +25,7 @@ const Home = async () => {
               className="font-medium underline hover:text-gray-300 transition-colors"
               style={{ color: 'white' }}
               href={repoUrl}
-              >soon(tm)</a>
+              >now(tm)</a>
           </GlimpseTrigger>
           <GlimpseContent className="w-80">
           <GlimpseImage src={repoData.image ?? ""} />
@@ -33,7 +33,7 @@ const Home = async () => {
           <GlimpseDescription>{repoData.description}</GlimpseDescription>
           </GlimpseContent>
         </Glimpse>
-        ...
+        ??
         </div>
       </main>
     </div>
