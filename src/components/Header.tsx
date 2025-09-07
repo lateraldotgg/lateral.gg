@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="p-2">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-extrabold text-primary">lateral.gg</h1>
+        <h1 className="text-2xl font-extrabold">lateral.gg</h1>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
