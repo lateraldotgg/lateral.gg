@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${oxanium.variable} ${shareTechMono.variable} antialiased overflow-hidden`}
       >
-        <div className="min-h-screen w-full relative font-sans">
+        <div className="grid grid-cols-8 grid-rows-16 gap-4 h-screen w-screen font-sans">
           <Header />
           {children}
         </div>
