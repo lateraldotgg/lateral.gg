@@ -9,7 +9,10 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="col-span-8 grid grid-cols-subgrid" role="banner">
+    <header
+      className="col-span-8 grid grid-cols-subgrid items-center"
+      role="banner"
+    >
       <h1 className="col-span-1 text-2xl font-extrabold">lateral.gg</h1>
       <nav
         className="col-span-5 col-start-3 justify-self-center"
@@ -41,7 +44,7 @@ export default function Header() {
         </NavigationMenu>
       </nav>
       <Icon
-        className="col-span-1 text-2xl justify-self-end"
+        className="col-span-1 justify-self-end text-2xl"
         icon="ph:user-light"
         role="button"
       />

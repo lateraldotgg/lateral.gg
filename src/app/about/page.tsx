@@ -4,7 +4,7 @@ const About = async () => {
       <main className="p-2">
         {/* Page content goes here */}
         <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">About</h2>
+          <h2 className="mb-4 text-xl font-semibold">About</h2>
           <p>This is the about page content.</p>
         </div>
       </main>

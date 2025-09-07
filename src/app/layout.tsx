@@ -31,9 +31,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head></head>
       <body
-        className={`${oxanium.variable} ${shareTechMono.variable} antialiased overflow-hidden`}
+        className={`${oxanium.variable} ${shareTechMono.variable} overflow-hidden antialiased`}
       >
-        <div className="grid grid-cols-8 grid-rows-16 gap-4 h-screen w-screen font-sans p-2">
+        <div className="grid h-screen w-screen grid-cols-8 grid-rows-16 gap-2 p-2 font-sans">
           <Header />
           {children}
         </div>

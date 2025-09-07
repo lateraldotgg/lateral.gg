@@ -50,7 +50,7 @@ type KanbanColumnProps = {
 
 type KanbanContextProps<
   T extends KanbanItemProps = KanbanItemProps,
-  C extends KanbanColumnProps = KanbanColumnProps
+  C extends KanbanColumnProps = KanbanColumnProps,
 > = {
   columns: C[];
   data: T[];
@@ -77,7 +77,8 @@ export const KanbanBoard = ({ id, children, className }: KanbanBoardProps) => {
   return (
     <div
       className={cn(
-        "flex size-full h-full flex-col divide-y overflow-hidden rounded-md border bg text-xs shadow-sm ring-2 transition-all",
+        `bg flex size-full h-full flex-col divide-y overflow-hidden rounded-md
+        border text-xs shadow-sm ring-2 transition-all`,
         isOver ? "ring-primary" : "ring-transparent",
         className
       )}
@@ -121,24 +122,24 @@ export const KanbanCard = <T extends KanbanItemProps = KanbanItemProps>({
       <div style={style} {...listeners} {...attributes} ref={setNodeRef}>
         <Card
           className={cn(
-            "cursor-grab gap-4 rounded-md p-3 shadow-sm",
+            "cursor-grab gap-4 rounded-md p-2 shadow-sm",
             isDragging && "pointer-events-none cursor-grabbing opacity-30",
             className
           )}
         >
-          {children ?? <p className="m-0 font-medium text-sm">{name}</p>}
+          {children ?? <p className="m-0 text-sm font-medium">{name}</p>}
         </Card>
       </div>
       {activeCardId === id && (
         <t.In>
           <Card
             className={cn(
-              "cursor-grab gap-4 rounded-md p-3 shadow-sm ring-2 ring-primary",
+              "ring-primary cursor-grab gap-4 rounded-md p-2 shadow-sm ring-2",
               isDragging && "cursor-grabbing",
               className
             )}
           >
-            {children ?? <p className="m-0 font-medium text-sm">{name}</p>}
+            {children ?? <p className="m-0 text-sm font-medium">{name}</p>}
           </Card>
         </t.In>
       )}
@@ -165,7 +166,7 @@ export const KanbanCards = <T extends KanbanItemProps = KanbanItemProps>({
     <ScrollArea className="overflow-hidden">
       <SortableContext items={items}>
         <div
-          className={cn("flex flex-grow flex-col gap-2 p-2", className)}
+          className={cn("flex flex-grow flex-col gap-1 p-1", className)}
           {...props}
         >
           {filteredData.map(children)}
@@ -179,12 +180,12 @@ export const KanbanCards = <T extends KanbanItemProps = KanbanItemProps>({
 export type KanbanHeaderProps = HTMLAttributes<HTMLDivElement>;
 
 export const KanbanHeader = ({ className, ...props }: KanbanHeaderProps) => (
-  <div className={cn("m-0 p-2 font-semibold text-sm", className)} {...props} />
+  <div className={cn("m-0 p-2 text-sm font-semibold", className)} {...props} />
 );
 
 export type KanbanProviderProps<
   T extends KanbanItemProps = KanbanItemProps,
-  C extends KanbanColumnProps = KanbanColumnProps
+  C extends KanbanColumnProps = KanbanColumnProps,
 > = Omit<DndContextProps, "children"> & {
   children: (column: C) => ReactNode;
   className?: string;
@@ -198,7 +199,7 @@ export type KanbanProviderProps<
 
 export const KanbanProvider = <
   T extends KanbanItemProps = KanbanItemProps,
-  C extends KanbanColumnProps = KanbanColumnProps
+  C extends KanbanColumnProps = KanbanColumnProps,
 >({
   children,
   onDragStart,
@@ -319,7 +320,7 @@ export const KanbanProvider = <
       >
         <div
           className={cn(
-            "grid auto-cols-fr grid-flow-col gap-1 h-full w-full",
+            "grid h-full w-full auto-cols-fr grid-flow-col gap-2",
             className
           )}
         >

@@ -10,9 +10,9 @@
   --foreground: var(--color-stone-50);
   --card: var(--background);
   --card-foreground: var(--color-stone-50);
-  --popover: var(--back);
+  --popover: var(--background);
   --popover-foreground: var(--color-stone-50);
-  --primary: #B20000;
+  --primary: #b20000;
   --primary-foreground: var(--color-stone-50);
   --secondary: var(--color-stone-800);
   --secondary-foreground: var(--color-stone-100);
@@ -60,7 +60,7 @@
   --input: var(--input);
   --ring: var(--ring);
 }
- 
+
 /** Theme Setup **/
 @theme inline {
   --color-background: var(--background);
@@ -91,7 +91,7 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
- 
+
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
@@ -103,7 +103,7 @@
       transform: translateX(calc(-100% - var(--gap)));
     }
   }
- 
+
   @keyframes marquee-vertical {
     from {
       transform: translateY(0);
@@ -126,24 +126,41 @@
   *:focus-visible {
     @apply outline-ring rounded-xs shadow-none outline-2 outline-offset-3 transition-none!;
   }
-  
+
   /* Force font application */
   .font-sans {
-    font-family: var(--font-oxanium), ui-sans-serif, system-ui, sans-serif !important;
+    font-family:
+      var(--font-oxanium), ui-sans-serif, system-ui, sans-serif !important;
   }
-  
+
   .font-mono {
-    font-family: var(--font-share-tech-mono), ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+    font-family:
+      var(--font-share-tech-mono), ui-monospace, SFMono-Regular, "SF Mono",
+      Consolas, "Liberation Mono", Menlo, monospace !important;
   }
-  
+
   /* Variable font weight utilities */
-  .font-extralight { font-weight: 200; }
-  .font-light { font-weight: 300; }
-  .font-normal { font-weight: 400; }
-  .font-medium { font-weight: 500; }
-  .font-semibold { font-weight: 600; }
-  .font-bold { font-weight: 700; }
-  .font-extrabold { font-weight: 800; }
+  .font-extralight {
+    font-weight: 200;
+  }
+  .font-light {
+    font-weight: 300;
+  }
+  .font-normal {
+    font-weight: 400;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .font-semibold {
+    font-weight: 600;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  .font-extrabold {
+    font-weight: 800;
+  }
 }
 
 /** Custom Scrollbar **/
@@ -176,7 +193,7 @@
     max-width: 1440px;
   }
 }
- 
+
 /** Smooth scroll **/
 html {
   scroll-behavior: smooth;

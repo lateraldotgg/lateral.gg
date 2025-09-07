@@ -30,7 +30,7 @@ function Avatar({
     <AvatarPrimitive.Root
       aria-label="Avatar"
       data-slot="avatar"
-      className={cn("relative flex shrink-0 size-10", className)}
+      className={cn("relative flex size-10 shrink-0", className)}
       {...props}
     />
   );
@@ -61,7 +61,7 @@ function AvatarFallback({
       aria-label="Avatar Fallback"
       data-slot="avatar-fallback"
       className={cn(
-        "flex h-full w-full items-center justify-center rounded-full border border-border bg-accent text-accent-foreground text-xs",
+        "border-border bg-accent text-accent-foreground flex h-full w-full items-center justify-center rounded-full border text-xs",
         className
       )}
       {...props}

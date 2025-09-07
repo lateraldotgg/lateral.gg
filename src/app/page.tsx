@@ -1,7 +1,7 @@
 const Home = async () => {
   return (
     <main className="p-2" role="main">
-      <h2 className="text-xl font-semibold mb-4">Welcome to lateral.gg</h2>
+      <h2 className="mb-4 text-xl font-semibold">Welcome to lateral.gg</h2>
       <p>This is the home page content.</p>
     </main>
   );

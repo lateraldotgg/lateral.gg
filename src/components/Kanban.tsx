@@ -42,18 +42,18 @@ const Kanban = () => {
   useEffect(() => {
     const generateData = () => {
       const generatedColumns = [
-        { id: faker.string.uuid(), name: "Monday", color: "var(--primary)" },
-        { id: faker.string.uuid(), name: "Tuesday", color: "var(--secondary)" },
-        {
-          id: faker.string.uuid(),
-          name: "Wednesday",
-          color: "var(--secondary)",
-        },
-        {
-          id: faker.string.uuid(),
-          name: "Thursday",
-          color: "var(--secondary)",
-        },
+        // { id: faker.string.uuid(), name: "Monday", color: "var(--primary)" },
+        // { id: faker.string.uuid(), name: "Tuesday", color: "var(--secondary)" },
+        // {
+        //   id: faker.string.uuid(),
+        //   name: "Wednesday",
+        //   color: "var(--secondary)",
+        // },
+        // {
+        //   id: faker.string.uuid(),
+        //   name: "Thursday",
+        //   color: "var(--secondary)",
+        // },
         { id: faker.string.uuid(), name: "Friday", color: "var(--secondary)" },
         {
           id: faker.string.uuid(),
@@ -99,7 +99,7 @@ const Kanban = () => {
     );
   }
   return (
-    <div className="col-span-7 row-span-15 col-start-2">
+    <div className="col-span-7 col-start-2 row-span-15">
       <KanbanProvider
         columns={columns}
         data={features}
@@ -125,8 +125,8 @@ const Kanban = () => {
                   name={feature.name}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <div className="flex flex-col gap-1">
-                      <p className="m-0 flex-1 font-medium text-sm">
+                    <div className="flex flex-col gap-2">
+                      <p className="m-0 flex-1 text-sm font-medium">
                         {feature.name}
                       </p>
                     </div>
@@ -139,7 +139,7 @@ const Kanban = () => {
                       </Avatar>
                     )}
                   </div>
-                  <p className="m-0 text-muted-foreground text-xs">
+                  <p className="text-muted-foreground m-0 text-xs">
                     {shortDateFormatter.format(feature.startAt)} -{" "}
                     {dateFormatter.format(feature.endAt)}
                   </p>
