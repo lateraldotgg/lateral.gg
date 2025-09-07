@@ -99,7 +99,7 @@ const Kanban = () => {
     );
   }
   return (
-    <div className="h-full">
+    <div className="col-span-7 row-span-15 col-start-2">
       <KanbanProvider
         columns={columns}
         data={features}

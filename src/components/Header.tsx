@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="col-span-8 grid grid-cols-subgrid p-2" role="banner">
+    <header className="col-span-8 grid grid-cols-subgrid" role="banner">
       <h1 className="col-span-1 text-2xl font-extrabold">lateral.gg</h1>
       <nav
         className="col-span-5 col-start-3 justify-self-center"
