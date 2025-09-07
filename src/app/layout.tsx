@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oxanium, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const oxanium = Oxanium({
   variable: "--font-oxanium",
@@ -32,7 +33,10 @@ export default function RootLayout({
       <body
         className={`${oxanium.variable} ${shareTechMono.variable} antialiased overflow-hidden`}
       >
-        <div className="min-h-screen w-full relative font-sans">{children}</div>
+        <div className="min-h-screen w-full relative font-sans">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
