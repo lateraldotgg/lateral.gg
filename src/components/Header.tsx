@@ -4,6 +4,7 @@ import {
   NavigationMenuList,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
@@ -48,11 +49,9 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      <Icon
-        className="col-span-1 justify-self-end text-2xl"
-        icon="ph:user-light"
-        role="button"
-      />
+      <Link className="col-span-1 justify-self-end text-2xl" href="/profile">
+        <Icon icon="ph:user-light" role="button" />
+      </Link>
     </header>
   );
 }
