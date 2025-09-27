@@ -32,7 +32,12 @@ export default function Header() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/forum">Forum</Link>
+                <Link href="/calendar">Calendar</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href="/community">Community</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>

@@ -1,4 +1,4 @@
-const About = async () => {
+const AboutPage = async () => {
   return (
     <div className="">
       <main className="p-2">
@@ -12,4 +12,4 @@ const About = async () => {
   );
 };
 
-export default About;
+export default AboutPage;

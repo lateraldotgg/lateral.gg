@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oxanium, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { ConvexClientProvider } from "./ConvexClientProvider";
 
 const oxanium = Oxanium({
   variable: "--font-oxanium",
@@ -31,12 +32,18 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head></head>
       <body
-        className={`${oxanium.variable} ${shareTechMono.variable} overflow-hidden antialiased`}
+        className={`${oxanium.variable} ${shareTechMono.variable}
+          overflow-hidden antialiased`}
       >
-        <div className="grid h-screen w-screen grid-cols-8 grid-rows-16 gap-2 p-2 font-sans">
-          <Header />
-          {children}
-        </div>
+        <ConvexClientProvider>
+          <div
+            className="grid h-screen w-screen grid-cols-8 grid-rows-16 gap-2 p-2
+              font-sans"
+          >
+            <Header />
+            {children}
+          </div>
+        </ConvexClientProvider>
       </body>
     </html>
   );
