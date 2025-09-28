@@ -4,7 +4,6 @@ import { useAuthActions } from "@convex-dev/auth/react";
 import { Authenticated, AuthLoading, Unauthenticated } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { SignInWithGitHub } from "@/app/signin/SignInWithGitHub";
 import {
   Card,
   CardContent,
@@ -16,6 +15,8 @@ import {
   CardToolbar,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { api } from "../../../convex/_generated/api";
+import { useQuery } from "convex/react";
 
 // Component to handle redirect for unauthenticated users
 const UnauthenticatedRedirect = () => {
@@ -31,6 +32,7 @@ const UnauthenticatedRedirect = () => {
 // Simple OAuth buttons in center of grid
 const Profile = () => {
   const { signOut } = useAuthActions();
+  const user = useQuery(api.queries.users.findByAuth);
 
   return (
     <div
@@ -47,8 +49,8 @@ const Profile = () => {
         <Card>
           <CardHeader className="p-4">
             <CardHeading>
-              <CardTitle>Profile</CardTitle>
-              <CardDescription>Your profile</CardDescription>
+              <CardTitle>{user?.name}</CardTitle>
+              <CardDescription>{user?.email}</CardDescription>
             </CardHeading>
           </CardHeader>
           <CardContent className="flex flex-col items-center">
