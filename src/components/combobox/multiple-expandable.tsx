@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import { Badge, BadgeButton } from "@/components/ui/badge";
 import { Button, ButtonArrow } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { X } from "lucide-react";
+
 const topCities = [
   { value: "tokyo", label: "Tokyo" },
   { value: "new_york", label: "New York" },
@@ -29,51 +31,83 @@ const topCities = [
   { value: "seoul", label: "Seoul" },
   { value: "amsterdam", label: "Amsterdam" },
 ];
+
 export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
   const [selectedValues, setSelectedValues] = React.useState<string[]>([
+    "new_york",
     "london",
     "tokyo",
+    "paris",
+    "singapore",
+    "amsterdam",
   ]);
+
   const toggleSelection = (value: string) => {
     setSelectedValues((prev) =>
       prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
   };
+
   const removeSelection = (value: string) => {
     setSelectedValues((prev) => prev.filter((v) => v !== value));
   };
+
+  // Define maxShownItems before using visibleItems
+  const maxShownItems = 2;
+  const visibleItems = expanded
+    ? selectedValues
+    : selectedValues.slice(0, maxShownItems);
+  const hiddenCount = selectedValues.length - visibleItems.length;
+
   return (
-    <div className="w-full">
+    <div className="w-[300px]">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="ghost"
+            variant="outline"
             role="combobox"
             aria-expanded={open}
             autoHeight={true}
             mode="input"
             placeholder={selectedValues.length === 0}
-            className="relative w-full p-1"
+            className="relative w-full px-1.5 py-1"
           >
             <div className="flex flex-wrap items-center gap-1 pe-2.5">
               {selectedValues.length > 0 ? (
-                selectedValues.map((val) => {
-                  const city = topCities.find((c) => c.value === val);
-                  return city ? (
-                    <Badge key={val} variant="outline">
-                      {city.label}
-                      <BadgeButton
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          removeSelection(val);
-                        }}
-                      >
-                        <X suppressHydrationWarning />
-                      </BadgeButton>
+                <>
+                  {visibleItems.map((val) => {
+                    const city = topCities.find((c) => c.value === val);
+                    return city ? (
+                      <Badge key={val} variant="outline">
+                        {city.label}
+                        <BadgeButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeSelection(val);
+                          }}
+                        >
+                          <X />
+                        </BadgeButton>
+                      </Badge>
+                    ) : null;
+                  })}
+                  {/* Always show "Less" button when expanded */}
+                  {hiddenCount > 0 || expanded ? (
+                    <Badge
+                      className="text-muted-foreground hover:bg-accent
+                        cursor-pointer px-1.5"
+                      appearance="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpanded((prev) => !prev);
+                      }}
+                    >
+                      {expanded ? "Show Less" : `+${hiddenCount} more`}
                     </Badge>
-                  ) : null;
-                })
+                  ) : null}
+                </>
               ) : (
                 <span className="px-2.5">Select cities</span>
               )}

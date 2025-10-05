@@ -1,0 +1,37 @@
+/**
+ * Global hydration fix for browser extensions
+ * This CSS helps prevent hydration mismatches caused by browser extensions
+ * that modify DOM elements by ensuring consistent styling.
+ */
+
+/* Reset any potential browser extension modifications that could cause hydration mismatches */
+svg[data-darkreader-inline-stroke] {
+  /* Ensure consistent stroke handling */
+  stroke: currentColor !important;
+}
+
+svg[style*="--darkreader-inline-stroke"] {
+  /* Ensure consistent stroke handling for dark reader */
+  stroke: currentColor !important;
+}
+
+/* Prevent hydration mismatches for elements commonly modified by browser extensions */
+[data-slot="button-arrow"] svg,
+[data-slot="command-check"] svg,
+.lucide {
+  /* Ensure consistent rendering */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Specific fix for Dark Reader extension */
+[data-darkreader-inline-stroke] {
+  stroke: currentColor !important;
+}
+
+/* Ensure consistent behavior for elements that might be modified */
+*[data-slot] svg,
+.lucide-icon {
+  /* Prevent layout shifts from browser extension modifications */
+  contain: layout style paint;
+}

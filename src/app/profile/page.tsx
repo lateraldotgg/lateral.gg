@@ -32,7 +32,7 @@ const UnauthenticatedRedirect = () => {
 // Simple OAuth buttons in center of grid
 const Profile = () => {
   const { signOut } = useAuthActions();
-  const user = useQuery(api.queries.users.findByAuth);
+  const user = useQuery(api.queries.users.findByAuthWhole);
 
   return (
     <div

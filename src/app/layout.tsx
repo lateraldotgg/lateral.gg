@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Oxanium, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
+import "../styles/hydration-fix.css";
 import Header from "@/components/Header";
 import { ConvexClientProvider } from "./ConvexClientProvider";
+import { HydrationFix } from "@/components/HydrationFix";
 
 const oxanium = Oxanium({
   variable: "--font-oxanium",
@@ -36,6 +38,7 @@ export default function RootLayout({
           overflow-hidden antialiased`}
       >
         <ConvexClientProvider>
+          <HydrationFix />
           <div
             className="grid h-screen w-screen grid-cols-8 grid-rows-16 gap-2 p-2
               font-sans"

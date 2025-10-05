@@ -17,6 +17,7 @@ import type * as _samples_clubs from "../_samples/clubs.js";
 import type * as _samples_events from "../_samples/events.js";
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
+import type * as mutations_users from "../mutations/users.js";
 import type * as queries_clubs from "../queries/clubs.js";
 import type * as queries_events from "../queries/events.js";
 import type * as queries_users from "../queries/users.js";
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   "_samples/events": typeof _samples_events;
   auth: typeof auth;
   http: typeof http;
+  "mutations/users": typeof mutations_users;
   "queries/clubs": typeof queries_clubs;
   "queries/events": typeof queries_events;
   "queries/users": typeof queries_users;
