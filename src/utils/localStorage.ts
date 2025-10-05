@@ -1,6 +1,8 @@
-export function setItem(key: string, value: any) {
+export function setItem(key: string, value: object) {
   try {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }
   } catch (error) {
     console.error(error);
   }
@@ -8,9 +10,13 @@ export function setItem(key: string, value: any) {
 
 export function getItem(key: string) {
   try {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : null;
+    if (typeof window !== "undefined") {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : null;
+    }
+    return null;
   } catch (error) {
     console.error(error);
+    return null;
   }
 }

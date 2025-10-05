@@ -23,26 +23,32 @@ export const initialGuestTemplate: Guest = {
 };
 
 export function useLocalGuest(initialGuest: Guest) {
-  const [localGuest, setLocalGuest] = useState<Guest>(() => {
-    const guest = getItem("guest");
-    if (!guest) {
-      return initialGuest;
-    }
+  const [localGuest, setLocalGuest] = useState<Guest>(initialGuest);
+  const [hasMounted, setHasMounted] = useState(false);
 
-    // Ensure the guest object has the complete structure
-    return {
-      filters: {
-        days: guest.filters?.days || initialGuest.filters.days,
-        hosts: guest.filters?.hosts || initialGuest.filters.hosts,
-        tags: guest.filters?.tags || initialGuest.filters.tags,
-        similar: guest.filters?.similar || initialGuest.filters.similar,
-      },
-    };
-  });
-
+  // Load from localStorage after hydration
   useEffect(() => {
-    setItem("guest", localGuest);
-  }, [localGuest]);
+    setHasMounted(true);
+    const guest = getItem("guest");
+    if (guest) {
+      // Ensure the guest object has the complete structure
+      setLocalGuest({
+        filters: {
+          days: guest.filters?.days || initialGuest.filters.days,
+          hosts: guest.filters?.hosts || initialGuest.filters.hosts,
+          tags: guest.filters?.tags || initialGuest.filters.tags,
+          similar: guest.filters?.similar || initialGuest.filters.similar,
+        },
+      });
+    }
+  }, [initialGuest]);
+
+  // Save to localStorage when localGuest changes (but not on initial load)
+  useEffect(() => {
+    if (hasMounted) {
+      setItem("guest", localGuest);
+    }
+  }, [localGuest, hasMounted]);
 
   return [localGuest, setLocalGuest] as const;
 }

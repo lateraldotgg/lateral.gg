@@ -20,7 +20,7 @@ export function useHydrationSafe() {
  * Hook to create hydration-safe props for elements that may be modified by browser extensions.
  * Automatically adds suppressHydrationWarning for client-side rendering.
  */
-export function useHydrationSafeProps<T extends Record<string, any>>(
+export function useHydrationSafeProps<T extends Record<string, object>>(
   props: T
 ): T & { suppressHydrationWarning?: boolean } {
   const hasMounted = useHydrationSafe();

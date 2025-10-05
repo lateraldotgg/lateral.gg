@@ -1,8 +1,5 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
-
 const Home = () => {
   return (
     <main className="p-2" role="main">
