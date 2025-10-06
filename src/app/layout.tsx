@@ -11,6 +11,9 @@ const oxanium = Oxanium({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
   display: "swap",
+  preload: true,
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 const shareTechMono = Share_Tech_Mono({
@@ -18,6 +21,17 @@ const shareTechMono = Share_Tech_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
+  preload: false, // Only preload if used immediately
+  fallback: [
+    "ui-monospace",
+    "SFMono-Regular",
+    "SF Mono",
+    "Consolas",
+    "Liberation Mono",
+    "Menlo",
+    "monospace",
+  ],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -32,7 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <head></head>
+      <head>
+        {/* Font preloading is handled automatically by Next.js Google Fonts */}
+      </head>
       <body
         className={`${oxanium.variable} ${shareTechMono.variable}
           overflow-hidden antialiased`}

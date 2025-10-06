@@ -72,6 +72,7 @@ const Kanban = ({
 }) => {
   const [filteredColumns, setFilteredColumns] = useState<typeof columns>([]);
   const events = useQuery(api.queries.events.list100);
+  console.log("events:", events);
 
   const today = new Date();
   const currentDay = format(today, "EEEE");
@@ -105,14 +106,34 @@ const Kanban = ({
     );
   }
 
-  // Add column property to each event (for now, randomly assign to columns)
-  const eventsWithColumns = events.map((event) => ({
-    ...event,
-    column:
-      (filteredColumns.length > 0 &&
-        filteredColumns.find((column) => column.name === currentDay)?.id) ||
-      columns[0]?.id,
-  }));
+  // Add column property to each event based on the event's actual datetime
+  // Only include events that match one of the filtered columns
+  const eventsWithColumns = events
+    .map((event) => {
+      if (!event.datetime) {
+        return null; // Skip events without datetime
+      }
+
+      const eventDate = new Date(event.datetime);
+      const eventDay = format(eventDate, "EEEE");
+
+      // Find the column that matches the event's day
+      const matchingColumn = filteredColumns.find(
+        (column) => column.name === eventDay
+      );
+
+      if (!matchingColumn) {
+        return null; // Skip events that don't match any filtered column
+      }
+
+      return {
+        ...event,
+        column: matchingColumn.id,
+      };
+    })
+    .filter((event) => event !== null) as (Doc<"events"> & {
+    column: string;
+  })[];
 
   return (
     <div className="col-span-7 col-start-2 row-span-15">
